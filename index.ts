@@ -22,14 +22,14 @@ const books = [
 ];
 console.log(filterByRating(books));
 
-//! stack overflow answer kintu ami bujini beparta
-// function concatenateArrays<T>(...arrays: T[]): T[] {
-//   return arrays.reduce((acc, currentArray) => [...acc, ...currentArray], []);
-// }
-// const arrayOfStrings = concatenateArrays<string>(["a", "b"], ["c", "d"], ["e"]);
-// const arrayOfNumbers = concatenateArrays<number>([1, 2], [3, 4, 5], [6]);
-// console.log(arrayOfStrings);
-// console.log(arrayOfNumbers);
+function concatenateArrays<T>(...arrays: T[][]): T[] {
+  return arrays.reduce((acc, currentArray) => [...acc, ...currentArray], []);
+}
+const arrayOfStrings = concatenateArrays<string>(["a", "b"], ["c", "d"], ["e"]);
+const arrayOfNumbers = concatenateArrays<number>([1, 2], [3, 4, 5], [6]);
+console.log(arrayOfStrings, "modified");
+console.log(arrayOfNumbers);
+
 
 class Vehicle {
   private make: string;
@@ -69,16 +69,27 @@ function processValue(value: string | number): number {
 console.log(processValue("rasel"));
 console.log(processValue(50));
 
-// interface Product {
-//   name: string;
-//   price: number;
-// }
+interface Product {
+  name: string;
+  price: number;
+}
 
-// function getMostExpensiveProduct(products: Product[]): Product | null{
-//   const highestPrice = Math.max(...products.map(p => p.price));
-//   const product = products.filter(p=> p.price === highestPrice && {name: p.name, price: p.price});
-//   return products.length ? product:null;
-// }
+function getMostExpensiveProduct(products: Product[]): Product | null {
+    if (products.length === 0) {
+        return null;
+    }
+    return products.reduce((max, current) => 
+        current.price > max.price ? current : max
+    );
+}
+
+const products = [
+  { name: "Pen", price: 10 },
+  { name: "Notebook", price: 25 },
+  { name: "Bag", price: 50 }
+];
+
+console.log(getMostExpensiveProduct(products)) ; // Output: { name: "Bag", price: 50 }
 
 enum Day {
   Monday,
@@ -130,4 +141,3 @@ squareAsync(-3).catch(console.error);    // Output: Error: Negative number not a
 
 //* but eta make sense for me
 squareAsync(4).then((data)=>console.log(data)).catch(err=>console.log(err.message));
-
