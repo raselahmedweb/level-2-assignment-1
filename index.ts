@@ -112,16 +112,6 @@ console.log(getDayType(Day.Sunday));
 console.log(getDayType(Day.Monday));
 
 
-
-// const promise = new Promise((res, rej) => {
-//         if (-1 < 0) {
-//             rej(new Error("Negative number not allowed"));
-//         } else {
-//             setTimeout(() => {
-//                 res(2 * 2);
-//             }, 1000);
-//         }
-//     }).then((data)=>console.log(data,"etwtew")).catch(err=>console.log(err.message))
 async function squareAsync(n: number): Promise<number>{
   return new Promise((res, rej) => {
         if (n < 0) {
